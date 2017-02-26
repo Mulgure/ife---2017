@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script type="text/javascript" src="./js/three.js"></script>
+        <script type="text/javascript">
+            function init() {
+                // renderer
+                var renderer = new THREE.WebGLRenderer({
+                    canvas: document.getElementById('mainCanvas')
+                });
+            
+                var scene = new THREE.Scene();
+
+                var camera = new THREE.PerspectiveCamera(45, 1000 / 600, 1, 10);
+                camera.position.set(2, 3, 6);
+                camera.lookAt(new THREE.Vector3(0, 0, 0));
+                scene.add(camera);
+                //立方体
+                var cube = new THREE.Mesh(
+                    new THREE.CubeGeometry(1, 2, 3),
+                    new THREE.MeshLambertMaterial({
+                        color: 0xff0000,
+                    })
+                );
+                scene.add(cube);
+
+                //环1
+                var torusGeometryOne = new THREE.Mesh(
+                    new THREE.TorusGeometry(0.25,0.05,4,30),
+                    new THREE.MeshLambertMaterial({
+                        color: 0x00ff00,
+                    })
+                );
+                //环2
+                var torusGeometryTwo = new THREE.Mesh(
+                    new THREE.TorusGeometry(0.25,0.05,4,30),
+                    new THREE.MeshLambertMaterial({
+                        color: 0x00ff00,
+                    })
+                );
+                
+                scene.add(torusGeometryOne);
+                scene.add(torusGeometryTwo);
+
+                torusGeometryOne.position.set(0.95, 0.2, 1);
+                torusGeometryOne.rotation.set(-0.2, 1.4, 0);
+                torusGeometryTwo.position.set(0.95, 0.2, 2.2);
+                torusGeometryTwo.rotation.set(-0.2, 1.4, 0);
+                
+var light = new THREE.DirectionalLight(0xFFFFFF,1);
+light.position.set(1, 2, 3);
+scene.add(light);
+                
+
+
+                renderer.render(scene, camera);
+            }
+        </script>
+    </head>
+    
+    <body onload="init()">
+        <canvas id="mainCanvas" width="1000px" height="600px" ></canvas>
+    </body>
+</body>
+</html>
