@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div id="menu">
+        <div class="list">Menu Item 1</div>
+        <div class="list">Menu Item 2</div>
+    </div>
+    <div id="main">click</div>
+    </span> 
+<script> 
+window.onload=function(){
+    document.getElementById('main').oncontextmenu=function(event){
+        document.getElementById('menu').style.display='block'; 
+        //鼠标位置
+        var e = event || window.event;
+        var mouseX=e.clientX;
+        var mouseY=e.clientY;
+        var left,top;
+        //屏幕宽高
+        var screenWidth=document.documentElement.clientWidth;
+        var screenHeight=document.documentElement.clientHeight;
+        //menu宽高
+        var menuWidth=document.getElementById('menu').offsetWidth;
+        var menuHeight=document.getElementById('menu').offsetHeight;
+        //自定义菜单出现在鼠标指针右下方，当右边区域不够大，展示在左下方，同理，当下方区域不够时，展示在鼠标指针上方
+        ((mouseX+menuWidth)>screenWidth)?(left=(mouseX-menuWidth)+'px'):(left=mouseX+'px');
+        ((mouseY+menuHeight)>screenHeight)?(top=(mouseY-menuHeight)+'px'):(top=mouseY+'px');
+        //赋值
+        document.getElementById('menu').style.left=left;
+        document.getElementById('menu').style.top=top;
+        //禁用原生事件
+        return false; 
+    }
+    //单击使menu消失
+    document.body.onclick=function(){
+          document.getElementById('menu').style.display='none';
+    }
+}
+</script> 
+
+</body>
+</html>
