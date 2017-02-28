@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+    电话号码： <input id="number" type="text">
+    <button id="buttonOne">检验</button>
+    <p id="isPhoneNumber"></p>
+
+    字符串： <input id="string" type="text">
+    <button id="buttonTwo">检验</button>
+    <p id="isContinue"></p>
+<body>
+    <script>
+        window.onload=function(){
+            //第一部分
+            document.getElementById('buttonOne').onclick=function(){
+                var phoneNumber=document.getElementById('number').value;
+                var reOne=/1[35678]\d{9}/;//匹配规则
+                var result=reOne.test(phoneNumber);//true or false
+                var textResultOne;//中文
+                result?textResultOne='是手机号码':textResultOne='不是手机号码';
+                document.getElementById('isPhoneNumber').innerText=textResultOne;
+            }
+            //第二部分      
+            document.getElementById('buttonTwo').onclick=function(){
+                var string=document.getElementById('string').value;
+                var reTwo=/(\s|^)([A-Za-z]+(-[A-Za-z]+)*)\s+\2(?=\s|$)/;//匹配规则
+                var result=reTwo.test(string);//true or false
+                var textResultTwo;//中文
+                result?textResultTwo='是连续的字符串':textResultTwo='不是连续的字符串';
+                document.getElementById('isContinue').innerText=textResultTwo;
+            }
+        }
+    </script>
+</body>
+</html>
