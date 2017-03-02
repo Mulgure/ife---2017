@@ -1,0 +1,68 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container{
+    position: relative;
+}
+
+.bg{
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    background: url(./pic.jpg);
+    background-size: 100% 100%;
+    z-index: 1;
+    transition: all 1s linear;
+}
+
+.sub-container{
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    z-index: 2;
+}
+#path {
+    stroke-dasharray: 0px 125px 0px 125px 0px 125px 0px 125px 0px 125px 0px 125px 0px 125px 0px 125px;
+    transition: all 1s linear;
+}
+
+.sub-container:hover+.bg{
+    -webkit-filter:blur(10px); 
+}
+
+.sub-container:hover #path{
+    stroke-dasharray: 0px 0px 250px 0px 0px 0px 250px 0px 0px 0px 250px 0px 0px 0px 250px 0px;
+}
+
+.sub-container:hover>.words{
+    opacity: 1;
+}
+
+.words{
+    position: absolute;
+    top: 70px;
+    left: 70px;
+    display: block;
+    font-size: 30px;
+    font-weight: 900;
+    background: -webkit-linear-gradient(left, red, yellow 25%, red 50%, yellow 75%, red 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    opacity: 0;
+    transition: all 1s linear;
+    animation: colorChange 2s infinite linear;
+}
+
+@keyframes colorChange {
+    0%  {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
